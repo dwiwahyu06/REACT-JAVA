@@ -35,6 +35,6 @@ public class PesertaController {
         if (peserta == null) return "Peserta tidak ditemukan";
 
         boolean result = kursusService.daftarPeserta(peserta, kodeKursus);
-        return result ? "Berhasil daftar kursus" : "Kursus penuh atau tidak ditemukan";
+        return result ? "Berhasil daftar kursus" : "Kursus penuh atau tidk ditemukan";
     }
 }
