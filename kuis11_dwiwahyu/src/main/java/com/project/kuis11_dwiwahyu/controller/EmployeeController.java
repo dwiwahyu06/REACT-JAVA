@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 @RestController
 @RequestMapping("/employees")
@@ -19,6 +23,24 @@ public class EmployeeController {
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
+
+    @GetMapping("/search/{name}")
+    public List<Employee> searchByName(@PathVariable String name) {
+        return employeeRepository.findByNameContainingIgnoreCase(name);
+    }
+    
+    @GetMapping("/sort/asc")
+    public List<Employee> sortByNameAsc() {
+        return employeeRepository.findAllByOrderByNameAsc();
+    
+    }
+
+     @GetMapping("/sort/desc")
+    public List<Employee> sortByNamedesc() {
+        return employeeRepository.findAllByOrderByNameDesc();
+    
+    }
+    
 
     @PostMapping
     public Employee createEmployee(@RequestBody Employee employee) {
